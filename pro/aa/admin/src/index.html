@@ -1,0 +1,22 @@
+<?php
+session_start();
+if(isset($_SESSION['uname']))
+{
+	$temp=$_SESSION['uname'];
+	?>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="refresh" content="0;url=dist/index.php">
+    <title>SB Admin</title>
+    <script language="javascript">
+        window.location.href = "dist/index.html"
+    </script>
+</head>
+
+<body>
+    Go to <a href="dist/index.html">/dist/index.html</a>
+</body>
+
+</html>

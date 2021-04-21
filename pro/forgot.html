@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<style>
+body {
+  font-family: Arial;
+}
+
+input[type=email], select {
+  width: 500px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=password], select {
+  width: 500px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+
+input[type=submit] {
+  width:500px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+div.container {
+ width:500px;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  margin-left:500px;
+margin-top:150px;
+}
+h1 {
+  text-align: center;
+}
+
+</style>
+<body background="1.jpg" >
+
+
+
+<div class="container">
+  <form action="test.php" method="post">
+ <h1>RESET PASSWORD</h1><br>
+    <label for="email">Email</label><br>
+    <input type="email" id="mail" name="email" placeholder="Enter registered email.." onblur="validmail()" height="30" width="30">
+<br>
+    <label for="npass">New Password</label>
+<br>
+    <input type="password" id="npass" name="npass" placeholder="Enter new password..." onchange="validate4()" height="30" width="30">
+<br><label for="cpass">Confirm Password</label><br>
+    <input type="password" id="cpass" name="cpass" placeholder="Confirm your password..." height="100" width="30">
+
+   
+  
+    <input type="submit" value="Submit" onclick="hall()">
+  </form>
+</div>
+<script>
+var count=0;
+function hall()
+{
+
+validate1();
+
+validate4();
+if (count<1)
+{
+
+}
+}
+function validmail()
+   {
+    var email=document.getElementById("mail").value;
+	var mailexp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+	if(!email.match(mailexp))
+	{
+	 alert("Please enter your email address correctly");
+	 document.getElementById("mail").value="";
+	 document.getElementById("bt").focus();
+	}
+   }
+   
+   
+   
+   
+    function validpaswd()
+   {
+    var pass=document.getElementById("pawd").value;
+	var passexp =/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+        if(!pass.match(passexp))
+	{
+	 alert("Password must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters");
+	 document.getElementById("pawd").value="";
+	}
+   }
+   
+   function validcpass()
+   {
+    var pass=document.getElementById("pawd").value;
+	var cpass=document.getElementById("cpawd").value;
+	if(!(pass==cpass))
+	{
+	 alert("Password not matching");
+	 document.getElementById("cpawd").value="";
+	}
+   }
+   
+
+</script>
+
+</body>
+</html>

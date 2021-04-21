@@ -1,0 +1,124 @@
+<script>
+var count=0;
+function hall()
+{
+validate();
+validate1();
+validate2();
+validate3();
+validate4();
+if (count<1)
+{
+
+}
+}
+function validate()
+{
+var name=document.getElementById("name1").value;
+var letters=/^[a-zA-Z]/;
+if(name == "")
+{
+alert("Please enter your name");
+	
+count++;
+
+return false;
+}
+else if(!name.match(letters))
+{
+alert("Please enter valid name");
+count++;
+
+return false;
+}
+else
+{
+count=0;
+}}
+function validate1()
+{
+var email = document.getElementById("email1").value;
+var pat=/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})+$/;
+if (email == "")
+    {
+      alert("Email can't be blank");
+	 count++;
+
+      return false;
+    }
+	else if(!email.match(pat))
+{
+alert("Please enter valid email");
+	count++;
+
+
+return false;
+}
+else
+{
+count=0;
+}
+}
+function validate2()
+{
+var phone = document.getElementById("phno").value;
+var phn=/^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[789]\d{9}$/;
+if (phone == "")
+    {
+      alert("Phone number can't be blank ");
+count++;
+
+      return false;
+    }
+else if(phone.length!=10)
+{
+alert("Enter your phone number correctly!");
+count++;
+
+return false;
+}
+else if(!phone.match(phn))
+{
+alert("Please enter valid number");
+count++;
+
+return false;
+}
+else
+{
+count=0;
+}}
+function validate3()
+{
+var username = document.getElementById("uname").value;
+if (username=="")
+{  
+  alert("Username can't be blank");  
+count++;
+
+  return false;  
+}
+else
+{
+count=0;
+}
+}  
+function validate4()
+{
+var password = document.getElementById("psw").value;
+var pass=/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{6,}/;
+ if(!password.match(pass))
+{  
+  alert("Please enter valid password");  
+count++;
+
+  return false;  
+  }else
+  {
+  count=0;
+
+
+  }
+}
+
+</script>

@@ -249,30 +249,46 @@ border:1px#cccccc solid;
 #a{
 	color:black;
 }
+.vertical{
+border-left:5px solid green;
+height:60px;
+
+}
 
 </style>
 
 </head>
 
 <body>
-       <!-- Preloader -->
-    <div id="preloader">
-        <div class="south-load"></div>
-    </div>
+  
 
     <!-- ##### Header Area Start ##### -->
-    <header class="header-area">
+  <header class="header-area">
 
-       
+        <!-- Top Header Area -->
+        <div class="top-header-area">
+            <div class="h-100 d-md-flex justify-content-between align-items-center">
+                <div class="email-address">
+                    <a href="mailto:contact@southtemplate.com"></a>
+                </div>
+                <div class="phone-number d-flex">
+                    <div class="icon">
+                        <img src="img/icons/phone-call.png" alt="">
+                    </div>
+                    <div class="number">
+                    </div>
+                </div>
+            </div>
+        </div>
 
-       <!-- Main Header Area -->
+        <!-- Main Header Area -->
         <div class="main-header-area" id="stickyHeader">
             <div class="classy-nav-container breakpoint-off">
                 <!-- Classy Menu -->
                 <nav class="classy-navbar justify-content-between" id="southNav">
 
                     <!-- Logo -->
-                    <a class="nav-brand" href="index.html"><H2 id="i">UNIQUE REAL ESTATE MANAGEMENT SYSTEM</H2></a>
+                    <a class="nav-brand" href="index.html"><H2 id="i">UNIQUE</H2></a>
 
                     <!-- Navbar Toggler -->
                     <div class="classy-navbar-toggler">
@@ -290,37 +306,58 @@ border:1px#cccccc solid;
                         <!-- Nav Start -->
                         <div class="classynav">
                             <ul>
-                                <li id='a'><a href="test1.php" >Home</a></li>
-                                
-                                   
-                                </li>
-                                <li><a href="#">Properties</a>
-                                    <ul class="dropdown">
-									 
-                                        <li><a href="postprop1.php">Add Property</a></li>
-                                        <li><a href="login.html">Buy Property</a></li>
-                                     <li><a href="login.html">Rent Property</a></li>
-                                    </ul>
-                                </li>
-                                    <i class="fa fa-print fa-2x" style="cursor: pointer;color:white"  OnClick="CallPrint(this.value)" ></i>
+                                <li><a href="test1.php" id="i">Home</a></li>
+                                 <li><a href="my_prop.php" id="i">My Properties</a></li>
+								 <li><a href="search.php" id="i">Search</a></li>
+                                  <li><a href="wish.php" id="i"> Wishlist</a></li>
+    <li><a href="notification.php" id="i"> Notification</a></li>
+	 <li><a href="feedback.php" id="i"> Feedback</a></li>
+	 <li><a href="viewre.php" id="i">Report</a></li>
+                                    
+								                                
+                                    
+									 <?php
+									 $con=mysqli_connect("localhost","root","","project");
 
-                                </li>
-								<li class="dropdown"><a href="#"> 
+                            $sq = "select * from tbl_login where email = '$temp'";
+
+  $rs = mysqli_query($con,$sq);
+  $a=mysqli_fetch_array($rs);
+if($a['pay_status']==0 || $a['pay_status']=='')
+{
+
+  echo "<li><a href='payment.php?x=".$a['login_id']." 'id='i'>Add Property</a></li>";
+
+
+}
+else{
+	 echo "<li><a href='postprop1.php' id='i' >Add Property</a></li>";
+
+}
+	 ?>
+                                        
+                                       
+                                   
+                                
+
+                                <li class="dropdown" ><a href="#" id="i"> 
                                       <?php
                                       echo "welcome " .$temp;
 ?></a>
-                            <ul class="dropdown">
-<li><a href="my_profile.php">My Profile</a></li>
-<li><a href="change.php">Change Password</a></li>
+<ul class="dropdown" >
+<li><a href="my_profile.php" >My Profile</a></li>
 
-<li><a href="logout.php">Sign out</a></li></ul>
+<li><a href="change.php" >Change Password</a></li>
+
+<li><a href="logout.php" >Sign out</a></li></ul>
                                    </div>
                                 
                                   
-</li>
+
  
                            </ul>
 
+                          
                         <!-- Nav End -->
                     </div>
                 </nav>
@@ -348,7 +385,7 @@ $con=mysqli_connect("localhost","root","","project");
   $rs = mysqli_query($con,$sq);
   $a=mysqli_fetch_array($rs);
   $b=$a['login_id'];
-  $sql="select * from tbl_addprop where login_id = '$b' and status='1'";
+  $sql="select * from tbl_addprop where login_id = '$b'";
 $c=mysqli_query($con,$sql);
 $n=mysqli_num_rows($c);
 if($n>0){
@@ -360,24 +397,29 @@ while($row=mysqli_fetch_array($c))
 <div class="card border-secondary">
 <img src="project/<?php echo $row['p_img'];?>" style="width:355px;height:200px;" class="card-img-top"><br><br>
 
-<div class="card-body"><center>
-<h6 class="card-title text-danger">Price:<?php echo $row['price'];?></h6>
-<p><b>
-     Property Type :&nbsp&nbsp<?php echo $row['p_propertytype'];?> <br>
-     Ownership Type :&nbsp&nbsp <?php echo $row['p_ownershiptype'];?><br>
-     Place :&nbsp&nbsp<?php echo $row['d_name'];?><br>
+<div class="card-body">
+<b><h5 class="vertical"style="font-family:courier">&nbsp&nbsp&nbsp<?php echo $row['p_propertytype'];?>&nbsp Property,<br>&nbsp&nbsp&nbsp<?php echo $row['d_name'];?><br></h5>
+
+
+<p style="color:black;font-size:17px;">
+&nbspProperty ID: PT000<?php echo $row['p_id'];?><br>
+&nbspPosted On: <?php echo $row['date'];?><br>
+    &nbspPrice: &#x20B9 <?php echo $row['price'];?></b><br> 
+    <img src="l.png" style="width:20px;height:20px;">&nbsp&nbsp<?php echo $row['t_name'];?><br>
+	
 	 
-</b></p><?php
-                    if($row['status'] == 0 || $row['status'] =='')
+</p><?php
+                    
+                             if($row['status'] == 0 || $row['status'] =='')
                              {
 
-                               echo "<a href='my_prop.php?x=." .$row['p_id']." '>Active</a>";
+                               echo "<a href='my_prop.php?x=" .$row['p_id']." 'class='btn btn-success' style='width:280px;' >Not Sold</a>";
                                }
                                else
                                 {
-                                  echo "<a href='my_prop.php?y=" .$row['p_id']." '>Sold Out</a>";
-                                }
-?>
+                                  echo "<a href='my_prop.php?y=" .$row['p_id']."'class='btn btn-success' style='width:280px;'>Sold Out</a>
+                                  </td>";
+}?>
                          </center></div>
 </div>
 
@@ -391,7 +433,13 @@ while($row=mysqli_fetch_array($c))
 
 
 <?php
-}}
+} 
+?><script>alert("You have not added any properties");
+location.href="test1.php";
+ exit;
+	</script><?php
+
+}
 
 ?>
 
@@ -400,16 +448,11 @@ while($row=mysqli_fetch_array($c))
                            
   </form> 
 			<script>
-function CallPrint(strid) {
-var prtContent = document.getElementById("exampl");
-var WinPrint = window.open('', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
-WinPrint.document.write(prtContent.innerHTML);
-WinPrint.document.close();
-WinPrint.focus();
-WinPrint.print();
-WinPrint.close();
+
+function myFunction() {
+  document.getElementById("myBtn").disabled = true;
 }
-</script>																		
+</script>																	
 
 																			
 	

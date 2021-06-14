@@ -3,6 +3,7 @@ session_start();
 if(isset($_SESSION['uname']))
 {
 $temp=$_SESSION['uname'];
+
 ?>
 
 <html lang="en">
@@ -291,13 +292,17 @@ table {
         </div>
 
         <!-- Main Header Area -->
-        <div class="main-header-area" id="stickyHeader">
+       <header class="header-area">
+
+       
+
+              <div class="main-header-area" id="stickyHeader">
             <div class="classy-nav-container breakpoint-off">
                 <!-- Classy Menu -->
                 <nav class="classy-navbar justify-content-between" id="southNav">
 
                     <!-- Logo -->
-                    <a class="nav-brand" href="index.html"><H2 id="i">UNIQUE REAL ESTATE MANAGEMENT SYSTEM</H2></a>
+                    <a class="nav-brand" href="index.html"><H2 id="i">UNIQUE</H2></a>
 
                     <!-- Navbar Toggler -->
                     <div class="classy-navbar-toggler">
@@ -315,28 +320,50 @@ table {
                         <!-- Nav Start -->
                         <div class="classynav">
                             <ul>
-                                <li><a href="test1.php">Home</a></li>
-                               
-                                        
+                                <li><a href="test1.php" id="i">Home</a></li>
+                                 <li><a href="my_prop.php" id="i">My Properties</a></li>
+								 <li><a href="search.php" id="i">Search</a></li>
+                                  <li><a href="wish.php" id="i"> Wishlist</a></li>
+    <li><a href="notification.php" id="i"> Notification</a></li>
+	 <li><a href="feedback.php" id="i"> Feedback</a></li>
+	 <li><a href="viewre.php" id="i">Report</a></li>
                                     
-								                                <li><a href="#">Properties</a>
-                                    <ul class="dropdown">
-									 
-                                        <li><a href="postprop1.php">Add Property</a></li>
-                                        <li><a href="login.html">Buy Property</a></li>
-                                     <li><a href="login.html">Rent Property</a></li>
-                                    </ul>
-                                </li>
+								                                
+                                    
+									 <?php
+									 $con=mysqli_connect("localhost","root","","project");
 
-                                <li class="dropdown"><a href="#"> 
+                            $sq = "select * from tbl_login where email = '$temp'";
+
+  $rs = mysqli_query($con,$sq);
+  $a=mysqli_fetch_array($rs);
+if($a['pay_status']==0 || $a['pay_status']=='')
+{
+
+  echo "<li><a href='payment.php?x=".$a['login_id']." 'id='i'>Add Property</a></li>";
+
+
+}
+else{
+	 echo "<li><a href='postprop1.php' id='i' >Add Property</a></li>";
+
+}
+	 ?>
+                                        
+                                       
+                                   
+                                
+
+                                <li class="dropdown" ><a href="#" id="i"> 
                                       <?php
                                       echo "welcome " .$temp;
 ?></a>
-<ul class="dropdown">
-<li><a href="my_profile.php">My Profile</a></li>
-<li><a href="change.php">Change Password</a></li>
+<ul class="dropdown" >
+<li><a href="my_profile.php" >My Profile</a></li>
 
-<li><a href="logout.php">Sign out</a></li></ul>
+<li><a href="change.php" >Change Password</a></li>
+
+<li><a href="logout.php" >Sign out</a></li></ul>
                                    </div>
                                 
                                   
@@ -379,6 +406,7 @@ $con=mysqli_connect("localhost","root","","project");
 								 													$sql="select * from tbl_addprop where p_id='$a'";
 								 													$c=mysqli_query($con,$sql);
 																					$row=mysqli_fetch_array($c);
+																					$p_id=$row['p_id'];
 																					}?>
 
                            <br><br><br>
@@ -386,27 +414,39 @@ $con=mysqli_connect("localhost","root","","project");
 
 <div class="card-deck" style="width:1400px;">
 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<img src="project/<?php echo $row['p_img'];?>" style="width:400px;height400px;" class="card-img-top">
+
+	
 <div class="card border-secondary">
 <br><br>
 <b><h5 class="vertical"style="font-family:courier;margin-right:550px;float:right;color:green;"><?php echo $row['p_propertytype'];?> Property For Sale</h5>
-<br><h4 style="font-family:courier;margin-right:600px;float:right;color:Black;">In&nbsp<?php echo $row['d_name'];?>&nbspDistrict</h4>
-<br><h4 style="font-family:courier;margin-right:600px;float:right;color:Black;">&nbspPrice: &#x20B9 <?php echo $row['price'];?><br>
+<b><h5 style="font-family:courier;margin-right:675px;float:right;color:Black;">Property ID:<?php echo 'PT000'.$row['p_id'];?> </h4>
+<b><h5 style="font-family:courier;margin-right:650px;float:right;color:Black;">Posted On:<?php echo $row['date'];?> </h4>
+
+<br><h5 style="font-family:courier;margin-right:650px;float:right;color:Black;">In&nbsp<?php echo $row['d_name'];?>&nbspDistrict</h4>
+
+<h5 style="font-family:courier;margin-right:625px;float:right;color:Black;">&nbspPrice: &#x20B9 <?php echo $row['price'];?><br>
+<h5 style="font-family:courier;margin-right:625px;float:right;color:red;"><?php echo $row['likes'];?>&nbspPeople Liked This Property<br>
 
 
-&nbsp&nbsp
+
 <br>
+
+
+</div>
+
+</div><br><table style="margin-left:200px;" >	
 <?php
-	
+echo "<tr><td></td><td><p><a href='request.php?x=".$row['p_id']."'class='btn btn-success' style='width:250px;'>Send Interest Request</a></td><td>
+		
 
-	 echo "<a href='contact.php?x=".$row['login_id']."'class='btn btn-success' style='width:250px;'>Contact Details</a>";
-	 ?>
-</div>
+	<a href='contact.php?x=".$row['login_id']."'class='btn btn-success' style='width:250px;'>Contact Details</a></td><td>
+    <a href='wishlist.php?x=".$row['p_id']."'class='btn btn-success' style='width:250px;' name='add_to_wishlist;'>Add to wishlist</a></p></td></tr></table>
+		
+		";?>
+<br><br><table style="margin-left:200px;">
+<tr><th><h4><u>Property Description</u></h4></th></tr>
 
-</div>
-<br><br>
-<h4><u>Property Description</u></h4><br>
-
-<p><?php echo $row['p_description'];?></p><br><br>
+<p><h6><tr><td><?php echo $row['p_description'];?></p><br></td></tr>
 <center>
 <table border='1' style="margin-left:200px;" >
 <tr><td><h5><i>Ownership</td>
@@ -420,60 +460,11 @@ $con=mysqli_connect("localhost","root","","project");
 <td><h6>: <?php echo $row['t_name'];?></td></tr>
 
 <tr><td><h5><i>Plot Area</td>
-<td><h6>: <?php echo $row['plot'];?></td></tr>
+<td><h6>: <?php echo $row['plot_num'].$row['plot_area'];?></td></tr>
 
 
 </table></center>
 
-
-    <script>
-        function validate()
-        {
-        var name=document.getElementById("name1").value;
-        var letters=/^[a-zA-Z\s]*$/;
-        if(!name.match(letters))
-        {
-        alert("Please enter valid name");
-        document.getElementById("name1").value="";
-        }
-        }
-        
-        
-        function validate2()
-        {
-        var phone = document.getElementById("phno").value;
-        var ph=/^(9|8|7|6)[0-9]{9}$/;
-         if(!phone.match(ph))
-        {
-        alert("enter valid phone number");
-        document.getElementById("phno").value="";
-        }
-        }
-        function validate6()
-        {
-        var email=document.getElementById("email1").value;
-        var pat=/^(([-\w\d]+)(\.[-\w\d]+)*@([-\w\d]+)(\.[-\w\d]+)*(\.([a-zA-Z]{2,5}|[\d]{1,3})){1,2})$/;
-         if(!email.match(pat))
-        {
-        alert("Please enter valid email");
-        document.getElementById("email1").value="";
-        }
-        }
-        function validate1()
-        {
-        var name=document.getElementById("uname1").value;
-        var letters=/^[0-9a-zA-Z]+$/;
-        if(!name.match(letters))
-        {
-        alert("Please enter valid username");
-        document.getElementById("uname1").value="";
-        }
-        }
-        
-
-        </script>
-                           
-   
 
         
     <!-- ##### Footer Area End ##### -->

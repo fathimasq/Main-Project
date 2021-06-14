@@ -96,7 +96,36 @@
  
      
     <!-- ##### Footer Area End ##### -->
-
+<script type="text/javascript">
+    $(document).ready(function(){
+	
+		$(".product_check").click(function(){
+			var action = 'data';
+			var p_transactiontype = get_filter_text('p_transactiontype');
+			var p_ownershiptype = get_filter_text('p_ownershiptype');
+			var p_propertytype = get_filter_text('p_propertytype');
+			var d_name = get_filter_text('d_name');
+			
+			
+		$.ajax({
+			url:'action.php',
+			method:'POST',
+			data:{action:action,p_transactiontype:p_transactiontype,p_ownershiptype:p_ownershiptype,p_propertytype:p_propertytype,d_name:d_name},
+			success:function(response){
+				$("#result").html(response);
+				$("#textChange").text("Filtered Properties");
+			}
+		});
+		});
+		function get_filter_text(text_id){
+	var filterData = []; 
+	$('#'+text_id+':checked').each(function(){
+	filterData.push($(this).val());	
+	});
+	return filterData;
+	}
+});
+</script>
 
 </body>
 

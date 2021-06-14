@@ -27,8 +27,14 @@ $temp=$_SESSION['uname'];
 	<style>
 	fieldset{
 background-color:white;
-width:500px;
+width:950px;
+height:170px;
+margin-left:500px;
 
+}
+#dname{
+	
+	width:100px;
 }
 legend{
 background-color:black;
@@ -46,13 +52,12 @@ background-repeat:no-repeat;
 }
 form
 {
-opacity:0.9;
-margin-top:10px;
-margin-left:50px;
+opacity:1;
+margin-top:0px;
+margin-left:40px;
 color:black;
 height:500px;  
-border:1;
-border-radius:4px;
+
 align-right:0px 
 border:1px#cccccc solid;
 }
@@ -69,29 +74,49 @@ height:100px;
 
 }
 .container{
-width:300px;
+width:200px;
 height:100px;
 }
 
 input[type=submit] {
   
-  background-color:green;
+  background-color:black;
+  font-color:white;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
   border: none;
   cursor: pointer;
-  width: 100%;
+  width: 320px;
+  height:65px;
+  
+
+}
+#bts{
+  
+  background-color:white;
+  font-color:black;
+  color: black;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 320px;
+  height:65px;
+  
+
 }
 
 input[type=reset] {
-background-color:green;
+background-color:black;
+font-color:white;
   color: white;
   padding: 14px 20px;
-  margin: 8px 0;
+  margin: 10px 0;
   border: none;
   cursor: pointer;
-  width: 100%;
+  width: 320px;
+  height:65px;
   
 }
 
@@ -107,7 +132,7 @@ background-color:green;
   margin: 8px 0;
   border: none;
   cursor: pointer;
-  width: 48%;
+  width: 60%;
 }
 
 button:hover {
@@ -173,7 +198,8 @@ width:500px;
 
 }
 select{
-margin: 30px 0px 30px 0px;
+margin: 50px 0px 50px 0px;
+width:500px;
 }
 #i{
 color:white;
@@ -229,6 +255,12 @@ height:60px;
 a{
 
 font-color:black;
+}
+#cart_count{
+	text-align:center;
+	padding:0 0.9rem 0.1rem 0.9rem;
+	border-radius:3rem;
+	
 }
 </style>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -291,7 +323,7 @@ font-color:black;
                 <nav class="classy-navbar justify-content-between" id="southNav">
 
                     <!-- Logo -->
-                    <a class="nav-brand" href="index.html"><H2 id="i">UNIQUE REAL ESTATE MANAGEMENT SYSTEM</H2></a>
+                    <a class="nav-brand" href="index.html"><H2 id="i">UNIQUE</H2></a>
 
                     <!-- Navbar Toggler -->
                     <div class="classy-navbar-toggler">
@@ -311,17 +343,37 @@ font-color:black;
                             <ul>
                                 <li><a href="test1.php">Home</a></li>
                                  <li><a href="my_prop.php">My Properties</a></li>
-								 <li><a href="search.php"> <span class="glyphicon glyphicon-filter"></span>Filter</a></li>
-                                       
+								 <li><a href="search.php">Search</a></li>
+                                  <li><a href="wish.php"> Wishlist</a></li>
+    <li><a href="notification.php"> Notification</a></li>
+	 <li><a href="feedback.php"> Feedback</a></li>
+	 <li><a href="viewre.php">Report</a></li>
                                     
-								                                <li><a href="#">Properties</a>
-                                    <ul class="dropdown">
-									 
-                                        <li><a href="postprop1.php">Add Property</a></li>
-                                        <li><a href="login.html">Buy Property</a></li>
-                                     <li><a href="login.html">Rent Property</a></li>
-                                    </ul>
-                                </li>
+								                                
+                                    
+									 <?php
+									 $con=mysqli_connect("localhost","root","","project");
+
+                            $sq = "select * from tbl_login where email = '$temp'";
+
+  $rs = mysqli_query($con,$sq);
+  $a=mysqli_fetch_array($rs);
+if($a['pay_status']==0 || $a['pay_status']=='')
+{
+
+  echo "<li><a href='payment.php?x=".$a['login_id']."'>Add Property</a></li>";
+
+
+}
+else{
+	 echo "<li><a href='postprop1.php'>Add Property</a></li>";
+
+}
+	 ?>
+                                        
+                                       
+                                   
+                                
 
                                 <li class="dropdown"><a href="#"> 
                                       <?php
@@ -353,27 +405,18 @@ font-color:black;
     <section class="breadcumb-area bg-img" style="background-image: url(img/bg-img/hero1.jpg);">
         <div class="container h-100">
             <div class="row h-100 align-items-center">
-                <div class="col-12">
-                    <div class="breadcumb-content">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ##### Breadcumb Area End ##### -->
+		
+	 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<fieldset><figcaption><i><b></figcaption>
+		<br>
+<form action="viewcontra.php" method="POST" align='center'>
+	
+	
 
-   <center>
-	<figcaption><i><b></figcaption>
-		<br><br>
-
-    <form action="viewcontra.php" method="POST">
-	 <fieldset><legend><b>Search Property</b></legend>
-
-															<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+															<table>
 
 
-												
-<div class="input-group form-group">
+	<tr><td>											
+	<center><div class="input-group form-group">
 												<div class="input-group-prepend">
 												<span class="input-group-text"><i class="fa fa-map-marker"></i></span>
 												</div>
@@ -390,8 +433,8 @@ font-color:black;
             }
             ?>
             </select>
-</div>	
-<div class="input-group form-group">
+</div>	</td>
+<td>	<div class="input-group form-group">
 												<div class="input-group-prepend">
 												<span class="input-group-text"><i class="fa fa-map-marker"></i></span>
 												</div>
@@ -399,7 +442,7 @@ font-color:black;
             <option value="">Select Town</option>
 	
             </select>
-		</div>
+		</div></td><td>
 	<div class="input-group form-group">
 												<div class="input-group-prepend">
 												<span class="input-group-text"><i class="fa-map-marker"></i></span>
@@ -418,20 +461,57 @@ font-color:black;
             ?>
 		</select>
 		
-												
-												
-</div>
-												
-						            <center> <input type="submit" id="bt" value="Search" class="btn btn-secondary">
+				</fieldset>									
+											
+</div></td>	</tr>
+											
+						  <tr>  <td><input type="submit" id="bt1" value="Search" class="btn btn-secondary" ></td><td>
 
-    <input type="reset" class="cancelbtn"></center>
-						            
-											</table>
+    <input type="reset" class="cancelbtn"></td><td>
+	<a href='search.php' id="bts"   >&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp| Advanced Search |</a></tr>
+						         </table> 
+										
 											</form>
+                <div class="col-12">
+                    <div class="breadcumb-content">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Breadcumb Area End ##### -->
 
-  
-                         </center>
-	
+
+      <br><br>  <div class="container">
+           
+                
+                    
+                        <h2>REAL ESTATE</h2>
+                    
+           
+
+
+
+                        <!-- Single Testimonial Slide -->
+                        
+                           
+                            “Real estate is an imperishable asset, ever increasing in value. It is the most solid security that human ingenuity has devised. It is the basis of all security and about the only indestructible security.” 
+
+                           
+                     
+
+                           
+                        “Real estate is a numbers game. But that doesn’t mean a few words can’t help investors dominate the market. In fact, real estate investing is an extremely emotional pursuit. Between investors’ swing moods, that many times drives the market, to the risks that are involved with investing, emotions can sometimes run high".
+                           
+                    
+
+                      
+
+                        
+                    </div>
+                </div>
+            <br><br>
+	<br><br><br>
 <div class="row" id="result">
  <?php
 			
@@ -441,6 +521,7 @@ $con=mysqli_connect("localhost","root","","project");
 
   $rs = mysqli_query($con,$sq);
   $a=mysqli_fetch_array($rs);
+  
   $b=$a['login_id'];
   $sql="select * from tbl_addprop where login_id != '$b'";
 $c=mysqli_query($con,$sql);
@@ -464,9 +545,18 @@ while($row=mysqli_fetch_array($c))
 	 
 </p>
 <?php
+if($a['pay_status']==0 || $a['pay_status']=='')
+{
+
+  echo "<a href='payment.php?x=".$a['login_id']."'class='btn btn-success' style='width:310px;'>More Details</a><br><br>";
+
+
+}
+else{
 	 echo "<a href='morede.php?x=".$row['p_id']."'class='btn btn-success' style='width:310px;'>More Details</a><br><br>";
 
-	 echo "<a href='contact.php?x=".$row['login_id']."'class='btn btn-success' style='width:310px;'>View Contact Details</a>";
+	 echo "<a href='like.php?x=".$row['p_id']."'class='btn btn-success' style='width:310px;'>Like&nbsp&nbsp<i class='fa fa-thumbs-o-up'></i></a><br><br>";
+}
 	 ?>
 </div>
 </div>
@@ -474,31 +564,20 @@ while($row=mysqli_fetch_array($c))
 </div>
 </div>
 <?php } ?>
-</div>   
+</div>
 
 
 <?php
 }
-else
-
-{
-?>
-<script>alert('No Properties Found');
-window.location="test1.php";
-</script>
-                             
-<?php
-
-}
 
 
 ?>
- 
-     
+
+
     <!-- ##### Footer Area End ##### -->
 
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
-    
+
     <!-- Popper js -->
     <script src="js/popper.min.js"></script>
     <!-- Bootstrap js -->
@@ -525,4 +604,3 @@ else
 header("location:login.html");
 }
 ?>
-

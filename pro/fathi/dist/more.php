@@ -5,7 +5,22 @@ $con=mysqli_connect("localhost","root","","project");
 if(isset($_SESSION['uname']))
 {
 	$temp=$_SESSION['uname'];
-
+    if(isset($_REQUEST['x']))
+	{
+		$a=intval($_GET['x']);
+		$sql="update tbl_addprop set status='1' where p_id='$a'";
+		
+		mysqli_query($con,$sql);
+		
+	}
+	if(isset($_REQUEST['y']))
+	{
+		$a=intval($_GET['y']);
+		$sql="update tbl_addprop set status='0' where p_id='$a'";
+		
+		mysqli_query($con,$sql);
+		
+	}
 	?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,16 +65,11 @@ p{
     </head>
     <body>
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <a class="navbar-brand" href="index.html">UNIQUE REAL ESTATE MANAGEMENT SYSTEM</a>
+            <a class="navbar-brand" href="index.html">UNIQUE</a>
             <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-                <div class="input-group">
-                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
-                    <div class="input-group-append">
-                        <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
-                    </div>
-                </div>
+                
             </form>
              <!-- Navbar-->
             <ul class="navbar-nav ml-auto ml-md-0">
@@ -82,6 +92,7 @@ echo $temp;
             <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
+                        <div class="sb-sidenav-menu">
                         <div class="nav">
                            
                             <a class="nav-link" href="index.php">
@@ -109,10 +120,40 @@ echo $temp;
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="add dist.php">Add District</a>
+									<a class="nav-link" href="add_town.php">Add Town</a>
 									<a class="nav-link" href="mdist.php">Manage District</a>
+
                                     
                                 </nav>
                             </div>
+							<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                               Price
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="add_price.php">Add Price Range</a>
+									
+
+                                    
+                                </nav>
+                            </div>
+														<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                               Plot Area
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="plot.php">Add Plot Area</a>
+									<a class="nav-link" href="mplot.php">Manage Plot Area</a>
+									
+
+                                    
+                                </nav>
+                            </div>
+							
 							  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                Users
@@ -137,7 +178,22 @@ echo $temp;
                                 </nav>
                             </div>
                             
+                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                               Feedback
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="viewfeed.php">View Feedback</a>
+                                   
+                                </nav>
+                            
+                          
                         </div>
+						
+                           
+                    </div>
                     </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
@@ -172,12 +228,27 @@ while($row=mysqli_fetch_array($result))
 {?>
 
 						  <div class="b">
-     <img src="../../project/<?php echo $row['p_img'];?>"  style="width:300px;height:300px;margin-right:100px;"><?php echo "<a href='m.php?x=".$row['login_id']."'>View Owner Details</a>";?>
+     <img src="../../project/<?php echo $row['p_img'];?>"  style="width:300px;height:300px;margin-right:100px;"><?php echo "<a href='m.php?x=".$row['login_id']."'>View Owner Details</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
+
+                    if($row['status'] == 0 || $row['status'] =='')
+                             {
+
+                               echo "<a href='more.php?x=" .$row['p_id']." 'class='btn btn-success'>Active</a>";
+                               }
+                               else
+                                {
+                                  echo "<a href='more.php?y=" .$row['p_id']." 'class='btn btn-success'>Inactive</a>";
+                                }
+
+	 
+	 
+	 ?>
 	  <br><br>
 	  <div><p><?php echo $row['p_propertytype'];?> &nbspProperty <br>
     Ownership Type :<?php echo $row['p_ownershiptype'];?>  <br>
      Expected Price&nbsp :<img src="r.jpg" style="width:20px;height:20px;"> </h5> <?php echo $row['price'];?> <br>
 <img src="l.png" style="width:20px;height:20px;">Place : </h5> <?php echo $row['d_name'];}?><br><br></p>
+
 	 </div>
 
 </form>

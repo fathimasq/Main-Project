@@ -1,5 +1,11 @@
 <?php
+session_start();
 $con=mysqli_connect("localhost","root","","project");
+$temp=$_SESSION['uname'];
+$sq = "select * from tbl_login where email = '$temp'";
+
+  $rs = mysqli_query($con,$sq);
+  $a=mysqli_fetch_array($rs);
 if(isset($_POST['action'])){
 	$sql="select * from tbl_addprop where p_transactiontype !=''";
 	
@@ -47,9 +53,12 @@ if(isset($_POST['action'])){
     <img src="l.png" style="width:20px;height:20px;">&nbsp&nbsp'.$row['t_name'].'<br>
 	 
 </p>
-<a href="contact.php?x='.$row['p_id'].'"class="btn btn-success" style="width:210px;">More Details</a><br><br>
 
-<a href="contact.php?x='.$row['login_id'].'"class="btn btn-success" style="width:210px;">View Contact Details</a>
+	<a href="morede.php?x='.$row['p_id'].'"class="btn btn-success" style="width:210px;">More Details</a><br><br>
+
+	<a href="contact.php?x='.$row['login_id'].'"class="btn btn-success" style="width:210px;">View Contact Details</a><br><br>
+
+
 
 </div>
 </div>

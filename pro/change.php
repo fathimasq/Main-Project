@@ -227,32 +227,17 @@ p{
     </div>
 
     <!-- ##### Header Area Start ##### -->
-    <header class="header-area">
+<header class="header-area">
 
-        <!-- Top Header Area -->
-        <div class="top-header-area">
-            <div class="h-100 d-md-flex justify-content-between align-items-center">
-                <div class="email-address">
-                    <a href="mailto:contact@southtemplate.com"></a>
-                </div>
-                <div class="phone-number d-flex">
-                    <div class="icon">
-                        <img src="img/icons/phone-call.png" alt="">
-                    </div>
-                    <div class="number">
-                    </div>
-                </div>
-            </div>
-        </div>
+       
 
-        <!-- Main Header Area -->
-        <div class="main-header-area" id="stickyHeader">
+              <div class="main-header-area" id="stickyHeader">
             <div class="classy-nav-container breakpoint-off">
                 <!-- Classy Menu -->
                 <nav class="classy-navbar justify-content-between" id="southNav">
 
                     <!-- Logo -->
-                    <a class="nav-brand" href="index.html"><H2 id="i">UNIQUE REAL ESTATE MANAGEMENT SYSTEM</H2></a>
+                    <a class="nav-brand" href="index.html"><H2 id="i">UNIQUE</H2></a>
 
                     <!-- Navbar Toggler -->
                     <div class="classy-navbar-toggler">
@@ -270,27 +255,50 @@ p{
                         <!-- Nav Start -->
                         <div class="classynav">
                             <ul>
-                                <li><a href="test1.php">Home</a></li>
-                               <li><a href="my_prop.php">My Properties</a></li>
-                                        
+                                <li><a href="test1.php" id="i">Home</a></li>
+                                 <li><a href="my_prop.php" id="i">My Properties</a></li>
+								 <li><a href="search.php" id="i">Search</a></li>
+                                  <li><a href="wish.php" id="i"> Wishlist</a></li>
+    <li><a href="notification.php" id="i"> Notification</a></li>
+	 <li><a href="feedback.php" id="i"> Feedback</a></li>
+	 <li><a href="viewre.php" id="i">Report</a></li>
                                     
-								                                <li><a href="#">Properties</a>
-                                    <ul class="dropdown">
-									 
-                                        <li><a href="postprop1.php">Add Property</a></li>
-                                        <li><a href="login.html">Buy Property</a></li>
-                                     <li><a href="login.html">Rent Property</a></li>
-                                    </ul>
-                                </li>
+								                                
+                                    
+									 <?php
+									 $con=mysqli_connect("localhost","root","","project");
 
-                                <li class="dropdown"><a href="#"> 
+                            $sq = "select * from tbl_login where email = '$temp'";
+
+  $rs = mysqli_query($con,$sq);
+  $a=mysqli_fetch_array($rs);
+if($a['pay_status']==0 || $a['pay_status']=='')
+{
+
+  echo "<li><a href='payment.php?x=".$a['login_id']." 'id='i'>Add Property</a></li>";
+
+
+}
+else{
+	 echo "<li><a href='postprop1.php' id='i' >Add Property</a></li>";
+
+}
+	 ?>
+                                        
+                                       
+                                   
+                                
+
+                                <li class="dropdown" ><a href="#" id="i"> 
                                       <?php
                                       echo "welcome " .$temp;
 ?></a>
-<ul class="dropdown">
-<li><a href="my_profile.php">My Profile</a></li>
-<li><a href="change.php">Change password</a></li>
-<li><a href="logout.php">Sign out</a></li></ul>
+<ul class="dropdown" >
+<li><a href="my_profile.php" >My Profile</a></li>
+
+<li><a href="change.php" >Change Password</a></li>
+
+<li><a href="logout.php" >Sign out</a></li></ul>
                                    </div>
                                 
                                   

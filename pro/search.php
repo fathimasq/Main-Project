@@ -102,13 +102,13 @@ height:60px;
        
 
        <!-- Main Header Area -->
-        <div class="main-header-area" id="stickyHeader">
+          <div class="main-header-area" id="stickyHeader">
             <div class="classy-nav-container breakpoint-off">
                 <!-- Classy Menu -->
                 <nav class="classy-navbar justify-content-between" id="southNav">
 
                     <!-- Logo -->
-                    <a class="nav-brand" href="index.html"><H2 id="i" style="color:white;">UNIQUE REAL ESTATE MANAGEMENT SYSTEM</H2></a>
+                    <a class="nav-brand" href="index.html"><H2 style="color:white;">UNIQUE</H2></a>
 
                     <!-- Navbar Toggler -->
                     <div class="classy-navbar-toggler">
@@ -126,30 +126,50 @@ height:60px;
                         <!-- Nav Start -->
                         <div class="classynav">
                             <ul>
-                                <li><a href="test1.php">Home</a></li>
-                                 <li><a href="my_prop.php">My Properties</a></li>
-								 
-                                        
+                                <li><a href="test1.php" id="i">Home</a></li>
+                                 <li><a href="my_prop.php" id="i">My Properties</a></li>
+								 <li><a href="search.php" id="i">Search</a></li>
+                                  <li><a href="wish.php" id="i"> Wishlist</a></li>
+    <li><a href="notification.php" id="i"> Notification</a></li>
+	 <li><a href="feedback.php" id="i"> Feedback</a></li>
+	 <li><a href="viewre.php" id="i">Report</a></li>
                                     
-								                                <li><a href="#">Properties</a>
-                                    <ul class="dropdown">
-									 
-                                        <li><a href="postprop1.php">Add Property</a></li>
-                                        <li><a href="login.html">Buy Property</a></li>
-                                     <li><a href="login.html">Rent Property</a></li>
-                                    </ul>
-                                </li>
+								                                
+                                    
+									 <?php
+									 $con=mysqli_connect("localhost","root","","project");
 
-                                <li class="dropdown"><a href="#"> 
+                            $sq = "select * from tbl_login where email = '$temp'";
+
+  $rs = mysqli_query($con,$sq);
+  $a=mysqli_fetch_array($rs);
+if($a['pay_status']==0 || $a['pay_status']=='')
+{
+
+  echo "<li><a href='payment.php?x=".$a['login_id']." 'id='i'>Add Property</a></li>";
+
+
+}
+else{
+	 echo "<li><a href='postprop1.php' id='i' >Add Property</a></li>";
+
+}
+	 ?>
+                                        
+                                       
+                                   
+                                
+
+                                <li class="dropdown" ><a href="#" id="i"> 
                                       <?php
                                       echo "welcome " .$temp;
 ?></a>
-<ul class="dropdown">
-<li><a href="my_profile.php">My Profile</a></li>
+<ul class="dropdown" >
+<li><a href="my_profile.php" >My Profile</a></li>
 
-<li><a href="change.php">Change Password</a></li>
+<li><a href="change.php" >Change Password</a></li>
 
-<li><a href="logout.php">Sign out</a></li></ul>
+<li><a href="logout.php" >Sign out</a></li></ul>
                                    </div>
                                 
                                   
@@ -301,7 +321,7 @@ while($row=mysqli_fetch_array($result))
   $rs = mysqli_query($con,$sq);
   $a=mysqli_fetch_array($rs);
   $b=$a['login_id'];
-  $sql="select * from tbl_addprop where login_id != '$b'";
+  $sql="select * from tbl_addprop where login_id != '$b' and status='1'";
 $c=mysqli_query($con,$sql);
 $n=mysqli_num_rows($c);
 if($n>0){
@@ -324,10 +344,18 @@ while($row=mysqli_fetch_array($c))
 	 
 </p>
 <?php
+if($a['pay_status']==0 || $a['pay_status']=='')
+{
+
+  echo "<a href='payment.php?x=".$a['login_id']."'class='btn btn-success' style='width:210px;'>More Details</a><br><br>";
+
+
+}
+else{
 	 echo "<a href='morede.php?x=".$row['p_id']."'class='btn btn-success' style='width:210px;'>More Details</a><br><br>";
 
-
-	 echo "<a href='contact.php?x=".$row['login_id']."'class='btn btn-success' style='width:210px;'>View Contact Details</a>";
+	 echo "<a href='contact.php?x=".$row['login_id']."'class='btn btn-success' style='width:210px;'>View Contact Details</a><br><br>";
+}
 	 ?>
 </div>
 </div>

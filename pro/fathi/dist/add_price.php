@@ -20,22 +20,17 @@ if(isset($_SESSION['uname']))
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
     </head>
 <style>
-#dname{
+#price{
 width:500px;
 }
 </style>
 <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <a class="navbar-brand" href="index.php">UNIQUE REAL ESTATE MANAGEMENT SYSTEM</a>
+            <a class="navbar-brand" href="index.php">UNIQUE</a>
             <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-                <div class="input-group">
-                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
-                    <div class="input-group-append">
-                        <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
-                    </div>
-                </div>
+                
             </form>
             <!-- Navbar-->
             <ul class="navbar-nav ml-auto ml-md-0">
@@ -58,6 +53,7 @@ echo $temp;
             <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
+                        <div class="sb-sidenav-menu">
                         <div class="nav">
                            
                             <a class="nav-link" href="index.php">
@@ -85,12 +81,40 @@ echo $temp;
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="add dist.php">Add District</a>
-																		<a class="nav-link" href="add_town.php">Add Town</a>
-
+									<a class="nav-link" href="add_town.php">Add Town</a>
 									<a class="nav-link" href="mdist.php">Manage District</a>
+
                                     
                                 </nav>
                             </div>
+							<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                               Price
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="add_price.php">Add Price Range</a>
+									
+
+                                    
+                                </nav>
+                            </div>
+														<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                               Plot Area
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="plot.php">Add Plot Area</a>
+									<a class="nav-link" href="mplot.php">Manage Plot Area</a>
+									
+
+                                    
+                                </nav>
+                            </div>
+							
 							  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                Users
@@ -115,8 +139,22 @@ echo $temp;
                                 </nav>
                             </div>
                             
+                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                               Feedback
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="viewfeed.php">View Feedback</a>
+                                   
+                                </nav>
                             
+                          
                         </div>
+						
+                           
+                    </div>
                     </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
@@ -127,16 +165,16 @@ ADMIN
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h1 class="mt-4">Property Type</h1>
+                        <h1 class="mt-4">Price Range</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active"><b>Add Property Type</b></li>
+                            <li class="breadcrumb-item active"><b>Add Price Range</b></li>
                         </ol>
                       
 					   <form action="add_price1.php" method="POST">
 						
                      <center> <table><tr></tr><tr></tr><tr></tr><tr></tr>
 					  <tr>
-					  <td><input type="text" name="price"  id="price" value="" placeholder="Enter Price Range" onblur="validate3()"  height="100%" width="100%" required></td>
+					  <td><input type="text" name="price"  id="price" value="" placeholder="Enter Price Range" onblur="validate3()"   required></td>
 					  <td><input type="submit" id="sb" value="Submit" class="btn btn-secondary"></td>
 	</tr>
 	</table>
